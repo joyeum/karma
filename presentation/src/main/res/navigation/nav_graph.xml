@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/PeopleCarouselFragment">
+    <fragment
+        android:id="@+id/PeopleCarouselFragment"
+        android:name="com.oyoyoy.karma.PeopleCarouselFragment"
+        android:label="PeopleCarouselFragment">
+
+    </fragment>
+    <!--
+            <fragment
+                android:id="@+id/test1Fragment"
+                android:name="com.popeye.ui.test.Test1Fragment"
+                android:label="Test1Fragment" >
+                <action
+                    android:id="@+id/action_test1Fragment_to_test2Fragment2"
+                    app:destination="@id/test2Fragment" />
+                <action
+                    android:id="@+id/action_test1Fragment_to_randomFragment"
+                    app:destination="@id/randomFragment" />
+            </fragment>
+        -->
+</navigation>
