@@ -1,20 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".PeopleCarouselFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".peopleCarousel.PeopleCarouselFragment">
     <data>
         <variable
             name="viewModel"
-            type="com.oyoyoy.karma.PeopleCarouselViewModel" />
+            type="com.oyoyoy.karma.peopleCarousel.PeopleCarouselViewModel" />
+        <variable
+            name="vpAdapter"
+            type="com.oyoyoy.karma.peopleCarousel.PepleCarouselFragmentStateAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/lo_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:tabGravity="center"
+            app:tabMode="auto" />
+
+
+        <androidx.viewpager2.widget.ViewPager2
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/fragment_view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Hello" />
+            app:layout_constraintBottom_toTopOf="@id/lo_tab"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

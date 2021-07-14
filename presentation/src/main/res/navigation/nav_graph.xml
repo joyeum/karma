@@ -5,7 +5,7 @@
     app:startDestination="@id/PeopleCarouselFragment">
     <fragment
         android:id="@+id/PeopleCarouselFragment"
-        android:name="com.oyoyoy.karma.PeopleCarouselFragment"
+        android:name="com.oyoyoy.karma.peopleCarousel.PeopleCarouselFragment"
         android:label="PeopleCarouselFragment">
 
     </fragment>
