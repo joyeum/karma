@@ -2,7 +2,13 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/PeopleCarouselFragment">
+    app:startDestination="@id/PeopleListFragment">
+    <fragment
+        android:id="@+id/PeopleListFragment"
+        android:name="com.oyoyoy.karma.peopleList.PeopleListFragment"
+        android:label="PeopleListFragment">
+
+    </fragment>
     <fragment
         android:id="@+id/PeopleCarouselFragment"
         android:name="com.oyoyoy.karma.peopleCarousel.PeopleCarouselFragment"

@@ -8,24 +8,15 @@
             name="viewModel"
             type="com.oyoyoy.karma.peopleCarousel.PeopleCarouselViewModel" />
         <variable
-            name="vpAdapter"
-            type="com.oyoyoy.karma.peopleCarousel.PepleCarouselFragmentStateAdapter" />
+            name="adapter"
+            type="com.oyoyoy.karma.peopleCarousel.PeopleCarouselFragmentStateAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/lo_tab"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
 
-            app:tabGravity="center"
-            app:tabMode="auto" />
 
 
         <androidx.viewpager2.widget.ViewPager2
@@ -33,7 +24,6 @@
             android:id="@+id/fragment_view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintBottom_toTopOf="@id/lo_tab"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

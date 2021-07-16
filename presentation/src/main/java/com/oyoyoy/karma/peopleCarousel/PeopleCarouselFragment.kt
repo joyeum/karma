@@ -9,12 +9,16 @@ import androidx.viewpager2.widget.ViewPager2
 import com.oyoyoy.karma.R
 import com.oyoyoy.karma.base.BaseFragment
 import com.oyoyoy.karma.databinding.FragmentPeopleCarouselBinding
+import com.oyoyoy.karma.peopleCarousel.test.TestGreenFragment
+import com.oyoyoy.karma.peopleCarousel.test.TestRedFragment
+
 //UI와 관련된 코드
 class PeopleCarouselFragment: BaseFragment<FragmentPeopleCarouselBinding>() {
 
     override val layoutId: Int
         get() = R.layout.fragment_people_carousel
     private lateinit var viewModel: PeopleCarouselViewModel
+    private lateinit var vpAdapter: PeopleCarouselFragmentStateAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -23,20 +27,18 @@ class PeopleCarouselFragment: BaseFragment<FragmentPeopleCarouselBinding>() {
         viewDataBinding.viewModel = viewModel
 
         viewLifecycleOwner.lifecycle.addObserver(viewModel)
+        vpAdapter = PeopleCarouselFragmentStateAdapter(this)
+        viewDataBinding.adapter = vpAdapter
+
     }
 
-    ///아래코드를 데이터 바인딩으로 해보자
-/*
-        val pagerAdapter = PagerFragmentStateAdapter(this)
-        viewPager.adapter = pagerAdapter
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        vpAdapter.addFragment(TestRedFragment())
+        Log.d("debugging","red")
+        vpAdapter.addFragment(TestGreenFragment())
+
+
     }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_people_carousel, container, false)
-    }*/
-
 
 }
