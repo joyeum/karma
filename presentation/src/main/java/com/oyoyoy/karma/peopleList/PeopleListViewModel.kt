@@ -2,18 +2,20 @@ package com.oyoyoy.karma.peopleList
 
 
 import androidx.lifecycle.MutableLiveData
-
+import com.oyoyoy.karma.base.BaseViewModel
 import com.oyoyoy.karma.peopleList.test.Person
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class PeopleListViewModel  {
+class PeopleListViewModel : BaseViewModel()  {
     var list = mutableListOf<Person>()
-    val peopleList = MutableLiveData<List<Person>>()
+    val peopleListData = MutableLiveData<List<Person>>()
 
+    var personAdapter: PeopleListAdapter = PeopleListAdapter(peopleListData)
 
-
-    var personAdapter: PeopleListAdapter = PeopleListAdapter(peopleList)
-    init {
-        ///testCode
+    override fun onCreate() {
+        super.onCreate()
         var temp1 = Person("one","test1",11111)
         var temp2 = Person("two","test2",22222)
         var temp3 = Person("three","test3",33333)
@@ -22,21 +24,24 @@ class PeopleListViewModel  {
         addItem(temp1)
         addItem(temp2)
         addItem(temp3)
-        personAdapter.setList(peopleList)
+        personAdapter.setList(peopleListData)
         //Log.d("debugging",peopleList.toString())
+        CoroutineScope(Dispatchers.Main).launch {
 
+        }
     }
+
 
 
 
     fun addItem(item: Person) {
         list.add(item)
-        peopleList.value = list
+        peopleListData.value = list
     }
 
     fun removeItem(item: Person) {
         list.remove(item)
-        peopleList.value = list
+        peopleListData.value = list
     }
 
 
