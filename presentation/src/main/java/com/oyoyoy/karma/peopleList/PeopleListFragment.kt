@@ -39,8 +39,6 @@ class PeopleListFragment : Fragment() {
         peopleList.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
         // RecyclerView.adapter에 지정
         viewModel = PeopleListViewModel()
-
-
         peopleList.adapter = PeopleListAdapter(viewModel.peopleList)
 
         //peopleList.setAdapter(viewModel.personAdapter)
