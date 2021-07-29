@@ -1,4 +1,4 @@
-package com.oyoyoy.karma.peopleList.test
+package com.oyoyoy.karma.peopleList
 
 data class Person(
     val name: String,

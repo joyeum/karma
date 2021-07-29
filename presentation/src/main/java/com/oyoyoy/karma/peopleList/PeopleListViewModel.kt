@@ -3,8 +3,6 @@ package com.oyoyoy.karma.peopleList
 
 import androidx.lifecycle.MutableLiveData
 
-import com.oyoyoy.karma.peopleList.test.Person
-
 class PeopleListViewModel  {
     var list = mutableListOf<Person>()
     val peopleList = MutableLiveData<List<Person>>()

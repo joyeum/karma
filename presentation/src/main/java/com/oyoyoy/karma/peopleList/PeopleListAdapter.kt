@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.oyoyoy.karma.R
-import com.oyoyoy.karma.peopleList.test.Person
 
 
 class PeopleListAdapter(var people: MutableLiveData<List<Person>>): RecyclerView.Adapter<PeopleListAdapter.PersonHolder>() {
