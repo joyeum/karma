@@ -14,8 +14,17 @@ class PeopleListViewModel : BaseViewModel()  {
 
     var personAdapter: PeopleListAdapter = PeopleListAdapter(peopleListData)
 
+<<<<<<< Updated upstream
     override fun onCreate() {
         super.onCreate()
+=======
+
+    var personAdapter: PeopleListAdapter = PeopleListAdapter(peopleList)
+    init {
+
+        ///testCode
+        /*
+>>>>>>> Stashed changes
         var temp1 = Person("one","test1",11111)
         var temp2 = Person("two","test2",22222)
         var temp3 = Person("three","test3",33333)
@@ -28,7 +37,12 @@ class PeopleListViewModel : BaseViewModel()  {
         //Log.d("debugging",peopleList.toString())
         CoroutineScope(Dispatchers.Main).launch {
 
+<<<<<<< Updated upstream
         }
+=======
+
+         */
+>>>>>>> Stashed changes
     }
 
 
