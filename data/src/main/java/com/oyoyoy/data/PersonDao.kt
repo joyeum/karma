@@ -10,7 +10,7 @@ import com.oyoyoy.domain.entity.Person
 @Dao
 interface PersonDao {
     @Query("SELECT * FROM people_table ORDER BY name ASC")
-    fun getAlphabetizedWords(): List<Person>
+    fun getCursePeople(): List<Person>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(person: Person)
