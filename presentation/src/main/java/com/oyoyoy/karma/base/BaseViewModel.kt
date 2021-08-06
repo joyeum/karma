@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModel
 abstract class BaseViewModel() : ViewModel(), LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     open fun onCreate() {}
-
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     open fun onStart() {}
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)

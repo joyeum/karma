@@ -27,7 +27,6 @@ class PeopleListFragment : Fragment() {
     private lateinit var button: Button
     /*
     lateinit var viewDataBinding: FragmentPeopleListBinding
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewDataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_people_list, container, false)
         viewDataBinding.lifecycleOwner = this
@@ -47,7 +46,9 @@ class PeopleListFragment : Fragment() {
         peopleList.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
         // RecyclerView.adapter에 지정
         viewModel = PeopleListViewModel()
-        peopleList.adapter = PeopleListAdapter(viewModel.peopleList)
+
+        peopleList.adapter = PeopleListAdapter(viewModel.peopleListData)
+
         navController = findNavController()
 
         button.setOnClickListener {
