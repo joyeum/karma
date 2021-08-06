@@ -7,25 +7,17 @@
         android:id="@+id/PeopleListFragment"
         android:name="com.oyoyoy.karma.peopleList.PeopleListFragment"
         android:label="PeopleListFragment">
-
+        <action
+            android:id="@+id/action_PeopleList_to_EnrollPerson"
+            app:destination="@id/EnrollPersonFragment" />
     </fragment>
     <fragment
-        android:id="@+id/PeopleCarouselFragment"
-        android:name="com.oyoyoy.karma.peopleCarousel.PeopleCarouselFragment"
-        android:label="PeopleCarouselFragment">
+        android:id="@+id/EnrollPersonFragment"
+        android:name="com.oyoyoy.karma.EnrollPersonFragment"
+        android:label="EnrollPersonFragment">
 
     </fragment>
-    <!--
-            <fragment
-                android:id="@+id/test1Fragment"
-                android:name="com.popeye.ui.test.Test1Fragment"
-                android:label="Test1Fragment" >
-                <action
-                    android:id="@+id/action_test1Fragment_to_test2Fragment2"
-                    app:destination="@id/test2Fragment" />
-                <action
-                    android:id="@+id/action_test1Fragment_to_randomFragment"
-                    app:destination="@id/randomFragment" />
-            </fragment>
-        -->
+
+
+
 </navigation>

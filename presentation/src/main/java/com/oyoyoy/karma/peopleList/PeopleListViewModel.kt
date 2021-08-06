@@ -8,7 +8,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class PeopleListViewModel : BaseViewModel()  {
+
+class PeopleListViewModel  {
+
     var list = mutableListOf<Person>()
     val peopleListData = MutableLiveData<List<Person>>()
 
