@@ -41,6 +41,8 @@ class PeopleListFragment : Fragment() {
         button = rootView.findViewById(R.id.buttonMove)
         return rootView
     }
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         peopleList.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)

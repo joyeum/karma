@@ -2,14 +2,17 @@ package com.oyoyoy.karma.peopleList
 
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.recyclerview.widget.RecyclerView
+import com.oyoyoy.karma.R
 import com.oyoyoy.karma.base.BaseViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class PeopleListViewModel  {
+class PeopleListViewModel : ViewModel() {
 
     var list = mutableListOf<Person>()
     val peopleListData = MutableLiveData<List<Person>>()
@@ -28,8 +31,8 @@ class PeopleListViewModel  {
         addItem(temp3)
         personAdapter.setList(peopleListData)
         //Log.d("debugging",peopleList.toString())
-        viewModelScope.launch {
-        }
+        viewModelScope.launch {  }
+
 
     }
 
