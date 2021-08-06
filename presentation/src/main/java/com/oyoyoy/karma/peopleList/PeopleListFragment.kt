@@ -6,40 +6,53 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
+import android.widget.Button
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.oyoyoy.karma.R
-import com.oyoyoy.karma.base.BaseFragment
-import com.oyoyoy.karma.databinding.FragmentPeopleListBinding
 
-class PeopleListFragment : BaseFragment<FragmentPeopleListBinding>() {
-    override val layoutId: Int
-        get() = R.layout.fragment_people_list
 
-    lateinit var viewModel: PeopleListViewModel
-    private lateinit var peopleListRv : RecyclerView
+
+class PeopleListFragment : Fragment() {
+
+    private lateinit var viewModel: PeopleListViewModel
+    private lateinit var peopleList : RecyclerView
     private lateinit var peopleListAdapter: PeopleListAdapter
+    private lateinit var navController : NavController
+    private lateinit var button: Button
+    /*
+    lateinit var viewDataBinding: FragmentPeopleListBinding
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        viewDataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_people_list, container, false)
+        viewDataBinding.lifecycleOwner = this
+        return viewDataBinding.root
+    }*/
 
 
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
+        val rootView = inflater.inflate(R.layout.fragment_people_list, container,false)
+        peopleList = rootView.findViewById<RecyclerView>(R.id.peopleList)
+        button = rootView.findViewById(R.id.buttonMove)
+        return rootView
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = PeopleListViewModel()
-        viewDataBinding.viewModel = viewModel
-
-
-        viewLifecycleOwner.lifecycle.addObserver(viewModel)
-
-//        peopleListRv.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
+        peopleList.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
         // RecyclerView.adapter에 지정
+        viewModel = PeopleListViewModel()
+        peopleList.adapter = PeopleListAdapter(viewModel.peopleListData)
+        navController = findNavController()
 
-        val rootView = viewDataBinding.root
-        peopleListRv = rootView.findViewById<RecyclerView>(R.id.peopleList)
-        peopleListAdapter = PeopleListAdapter(viewModel.peopleListData)
-        peopleListRv.adapter = peopleListAdapter
+        button.setOnClickListener {
+            navController.navigate(R.id.action_PeopleList_to_EnrollPerson)
+
+        }
 
 
         //peopleList.setAdapter(viewModel.personAdapter)
@@ -54,22 +67,8 @@ class PeopleListFragment : BaseFragment<FragmentPeopleListBinding>() {
             Log.d("debugging",it.toString())
         })*/
 
+    }
+    fun moveToEnrollPerson(){
 
     }
-
-    /*
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-
-        viewDataBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
-        return viewDataBinding.root
-    }
-
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_people_list, container,false)
-        peopleList = rootView.findViewById<RecyclerView>(R.id.peopleList)
-        return rootView
-    }*/
 }

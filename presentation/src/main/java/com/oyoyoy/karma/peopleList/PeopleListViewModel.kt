@@ -2,8 +2,8 @@ package com.oyoyoy.karma.peopleList
 
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.oyoyoy.karma.base.BaseViewModel
-import com.oyoyoy.karma.peopleList.test.Person
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -14,17 +14,8 @@ class PeopleListViewModel : BaseViewModel()  {
 
     var personAdapter: PeopleListAdapter = PeopleListAdapter(peopleListData)
 
-<<<<<<< Updated upstream
-    override fun onCreate() {
-        super.onCreate()
-=======
 
-    var personAdapter: PeopleListAdapter = PeopleListAdapter(peopleList)
     init {
-
-        ///testCode
-        /*
->>>>>>> Stashed changes
         var temp1 = Person("one","test1",11111)
         var temp2 = Person("two","test2",22222)
         var temp3 = Person("three","test3",33333)
@@ -35,16 +26,10 @@ class PeopleListViewModel : BaseViewModel()  {
         addItem(temp3)
         personAdapter.setList(peopleListData)
         //Log.d("debugging",peopleList.toString())
-        CoroutineScope(Dispatchers.Main).launch {
-
-<<<<<<< Updated upstream
+        viewModelScope.launch {
         }
-=======
 
-         */
->>>>>>> Stashed changes
     }
-
 
 
 
