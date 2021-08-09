@@ -1,26 +1,20 @@
 package com.oyoyoy.karma.peopleList
 
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import androidx.recyclerview.widget.RecyclerView
-import com.oyoyoy.karma.R
-import com.oyoyoy.karma.base.BaseViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import androidx.lifecycle.*
+import com.oyoyoy.domain.data.EntityPerson
+import com.oyoyoy.domain.repository.GetCursePeopleRepository
+
 import kotlinx.coroutines.launch
 
 
-class PeopleListViewModel : ViewModel() {
+class PeopleListViewModel(private val repository: GetCursePeopleRepository) : ViewModel(), LifecycleObserver {
 
-    var list = mutableListOf<Person>()
-    val peopleListData = MutableLiveData<List<Person>>()
-
-    var personAdapter: PeopleListAdapter = PeopleListAdapter(peopleListData)
-
+    //val peopleListData = MutableLiveData<List<Person>>()
+    val cursePeople: LiveData<List<EntityPerson>> = repository.allPeople.asLiveData()
 
     init {
+        /*
         var temp1 = Person("one","test1",11111)
         var temp2 = Person("two","test2",22222)
         var temp3 = Person("three","test3",33333)
@@ -29,24 +23,25 @@ class PeopleListViewModel : ViewModel() {
         addItem(temp1)
         addItem(temp2)
         addItem(temp3)
-        personAdapter.setList(peopleListData)
+        */
+
+
         //Log.d("debugging",peopleList.toString())
-        viewModelScope.launch {  }
+        fun insert(person:EntityPerson) = viewModelScope.launch {
+            repository.insert(person)
+
+        }
 
 
     }
+}
 
-
-
-    fun addItem(item: Person) {
-        list.add(item)
-        peopleListData.value = list
+class PeopleListVieModelFactory(private val repository: GetCursePeopleRepository) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(PeopleListViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return PeopleListViewModel(repository) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
-
-    fun removeItem(item: Person) {
-        list.remove(item)
-        peopleListData.value = list
-    }
-
-
 }

@@ -26,7 +26,6 @@ class PeopleListAdapter(var people: MutableLiveData<List<Person>>): RecyclerView
         var temp3 = Person("three","test3",33333)
 
         people.value = listOf(temp1,temp2,temp3)
-        people.value = emptyList()
         Log.d("debugging", people.value.toString())
 
 

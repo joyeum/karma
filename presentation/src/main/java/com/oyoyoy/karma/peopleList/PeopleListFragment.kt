@@ -25,38 +25,52 @@ class PeopleListFragment : Fragment() {
     private lateinit var peopleListAdapter: PeopleListAdapter
     private lateinit var navController : NavController
     private lateinit var button: Button
-    /*
-    lateinit var viewDataBinding: FragmentPeopleListBinding
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        viewDataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_people_list, container, false)
-        viewDataBinding.lifecycleOwner = this
-        return viewDataBinding.root
-    }*/
+
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_people_list, container,false)
-        peopleList = rootView.findViewById<RecyclerView>(R.id.peopleList)
         button = rootView.findViewById(R.id.buttonMove)
+        peopleList = rootView.findViewById<RecyclerView>(R.id.peopleList)
+        peopleList.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
+
+        navController = findNavController()
+        viewModel = PeopleListViewModel()
+
         return rootView
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        peopleList.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
-        // RecyclerView.adapter에 지정
-        viewModel = PeopleListViewModel()
 
-        peopleList.adapter = PeopleListAdapter(viewModel.peopleListData)
 
-        navController = findNavController()
+        viewLifecycleOwner.lifecycle.addObserver(viewModel)
+
+        peopleListAdapter = PeopleListAdapter(viewModel.peopleListData)
+        peopleList.adapter = peopleListAdapter
+
+        viewModel.peopleListData.observe(viewLifecycleOwner, Observer{
+
+
+        })
 
         button.setOnClickListener {
             navController.navigate(R.id.action_PeopleList_to_EnrollPerson)
-
         }
+    }
+
+}
+
+
+        /*
+lateinit var viewDataBinding: FragmentPeopleListBinding
+override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    viewDataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_people_list, container, false)
+    viewDataBinding.lifecycleOwner = this
+    return viewDataBinding.root
+}*/
 
 
         //peopleList.setAdapter(viewModel.personAdapter)
@@ -71,8 +85,3 @@ class PeopleListFragment : Fragment() {
             Log.d("debugging",it.toString())
         })*/
 
-    }
-    fun moveToEnrollPerson(){
-
-    }
-}
