@@ -25,7 +25,6 @@ class PeopleListViewModel(private val repository: GetCursePeopleRepository) : Vi
         addItem(temp3)
         */
 
-
         //Log.d("debugging",peopleList.toString())
         fun insert(person:EntityPerson) = viewModelScope.launch {
             repository.insert(person)
