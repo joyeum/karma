@@ -5,9 +5,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 
-@Entity(tableName = "people_table")
-data class EntityPerson(
-    @PrimaryKey val id : Int,
+@Entity(tableName = "people_table",primaryKeys = ["name"])
+class EntityPerson(
+
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "content") val content: String,
     @ColumnInfo(name = "timestamp") val timestamp: Int
