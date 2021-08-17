@@ -5,43 +5,52 @@
     <data>
         <variable
             name="viewModel"
-            type="com.oyoyoy.karma.EnrollPersonFragment" />
+            type="com.oyoyoy.karma.EnrollPersonViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/editPersonName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="160dp"
-            android:layout_marginLeft="20dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:text="@{viewModel.editPersonName}"
+            app:layout_constraintBottom_toTopOf="@+id/editPersonContent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/space_l"
+            android:layout_marginBottom="@dimen/space_default"
+            />
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/editPersonContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginBottom="@dimen/space_l"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Content"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+            android:text="@{viewModel.editPersonContent}"
+            app:layout_constraintBottom_toTopOf="@id/buttonEnroll"
+            app:layout_constraintStart_toStartOf="@+id/editPersonName"
+            />
 
         <Button
-            android:id="@+id/buttonMove"
+            android:id="@+id/buttonEnroll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ENROLL"
+            android:text="@string/button_enroll"
+            android:ems="8"
+            android:paddingBottom="@dimen/space_s"
+            android:paddingTop="@dimen/space_s"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="@dimen/space_xl"
+            android:onClick="@{()->viewModel.onButtonClick()}"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

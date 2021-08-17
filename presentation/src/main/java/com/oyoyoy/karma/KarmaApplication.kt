@@ -9,6 +9,6 @@ class KarmaApplication : Application() {
 
     val applicationScope = CoroutineScope(SupervisorJob())
 
-    val database by lazy { PersonRoomDatabase.getDatabase(this) }
+    val database by lazy { PersonRoomDatabase.getDatabase(this,applicationScope) }
     val repository by lazy { GetCursePeopleRepository(database.personDao()) }
 }
