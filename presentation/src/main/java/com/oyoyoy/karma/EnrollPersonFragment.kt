@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
+
 import com.oyoyoy.karma.base.BaseFragment
 import com.oyoyoy.karma.databinding.FragmentEnrollPersonBinding
-import java.util.Observer
+import androidx.lifecycle.Observer
+import com.oyoyoy.domain.data.Person
 
 class EnrollPersonFragment: BaseFragment<FragmentEnrollPersonBinding>() {
     override val layoutId: Int
@@ -17,12 +19,17 @@ class EnrollPersonFragment: BaseFragment<FragmentEnrollPersonBinding>() {
 
     //private lateinit var editPersonName: EditText
     //private lateinit var editPersonContent: EditText
+    //private lateinit var buttonEnroll : Button
+    //navController = findNavController()
+
+    interface OnResultListener {
+        fun onResult(value: Person)
+    }
+
+
     lateinit var viewModel: EnrollPersonViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-         super.onCreateView(inflater, container, savedInstanceState)
-    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,15 +37,14 @@ class EnrollPersonFragment: BaseFragment<FragmentEnrollPersonBinding>() {
         viewModel = EnrollPersonViewModel()
         //editPersonName = view.findViewById(R.id.editPersonName)
         //editPersonContent = view.findViewById(R.id.editPersonContent)
-        viewModel.enrollClick.observe(viewLifecycleOwner, Observer {
-            //navController.navigate(R.id.action_test1Fragment_to_randomFragment)
-            setFragmentResult("requestKey", bundleOf("key" to viewModel.))
+        //buttonEnroll = view.findViewById(R.id.buttonEnroll)
+        //parentFragmentManager.popBackStack()
 
+        viewModel.enrollClick.observe(viewLifecycleOwner, Observer {
+            navController.navigate(R.id.action_EnrollPerson_to_PeopleList)
         })
 
     }
-
-
 
 
 

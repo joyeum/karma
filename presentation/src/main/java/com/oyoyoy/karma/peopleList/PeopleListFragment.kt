@@ -7,36 +7,52 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.databinding.DataBindingUtil.setContentView
 
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.oyoyoy.domain.data.Person
+import com.oyoyoy.karma.EnrollPersonFragment
+import com.oyoyoy.karma.KarmaApplication
 import com.oyoyoy.karma.R
 
 
 
-class PeopleListFragment : Fragment() {
+class PeopleListFragment : Fragment(), EnrollPersonFragment.OnResultListener {
 
-    private lateinit var viewModel: PeopleListViewModel
+    private val viewModel: PeopleListViewModel by viewModels {
+        PeopleListVieModelFactory((application as KarmaApplication).repository)
+    }
     private lateinit var peopleList : RecyclerView
-    private lateinit var peopleListAdapter: PeopleListAdapter
+    private lateinit var adapter: PeopleListAdapter
     private lateinit var navController : NavController
-    private lateinit var button: Button
+    private lateinit var buttonMove: Button
+
+    private val newWordActivityRequestCode = 1
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        
+    }
 
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_people_list, container,false)
-        button = rootView.findViewById(R.id.buttonMove)
+        buttonMove = rootView.findViewById(R.id.buttonMove)
         peopleList = rootView.findViewById<RecyclerView>(R.id.peopleList)
+
         peopleList.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
+        adapter = PeopleListAdapter()
+        peopleList.adapter = adapter
 
         navController = findNavController()
-        viewModel = PeopleListViewModel()
 
         return rootView
     }
@@ -46,20 +62,48 @@ class PeopleListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        viewLifecycleOwner.lifecycle.addObserver(viewModel)
-
-        peopleListAdapter = PeopleListAdapter(viewModel.peopleListData)
-        peopleList.adapter = peopleListAdapter
-
-        viewModel.peopleListData.observe(viewLifecycleOwner, Observer{
+        //viewLifecycleOwner.lifecycle.addObserver(viewModel)
 
 
-        })
+        val restoreValue = arguments?.getString(keyRestore)
+        if (restoreValue != null) {
+            /** action to do something */
+        }
 
-        button.setOnClickListener {
+
+        viewModel.cursePeople.observe(viewLifecycleOwner, Observer{ people ->
+            people.let { adapter.submitList(it) }
+            })
+
+        buttonMove.setOnClickListener {
             navController.navigate(R.id.action_PeopleList_to_EnrollPerson)
         }
     }
+
+
+
+
+    override fun onResult(inputP: Person) {
+
+            viewModel.insert(inputP)
+        /*
+        // Fragment가 Visible 중일때만 처리
+        if (isVisible) {
+            /** action to do something */
+        }
+        else {
+
+            // Visible이 아닐 경우 Fragment#Arguemtn에 데이터 저장
+            //arguments = (arguments ?: Bundle()).also {
+                //it.putString(keyRestore, inputP)
+        }*/
+
+    }
+
+    companion object {
+        private const val keyRestore = "resultRestore"
+    }
+
 
 }
 

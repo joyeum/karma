@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 
 @Entity(tableName = "people_table",primaryKeys = ["name"])
-class EntityPerson(
+class Person(
 
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "content") val content: String,

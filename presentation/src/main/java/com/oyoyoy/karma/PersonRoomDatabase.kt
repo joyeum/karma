@@ -5,13 +5,13 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.oyoyoy.domain.data.EntityPerson
+import com.oyoyoy.domain.data.Person
 import com.oyoyoy.domain.data.PersonDao
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 // Annotates class to be a Room Database with a table (entity) of the Person class
-@Database(entities = arrayOf(EntityPerson::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(Person::class), version = 1, exportSchema = false)
 public abstract class PersonRoomDatabase : RoomDatabase() {
 
     abstract fun personDao(): PersonDao
@@ -25,7 +25,7 @@ public abstract class PersonRoomDatabase : RoomDatabase() {
                     var personDao = database.personDao()
 
                     // TODO: Add your own words!
-                    var person = EntityPerson("one","test1",11111 )
+                    var person = Person("one","test1",11111 )
                     personDao.insert(person)
                 }
             }

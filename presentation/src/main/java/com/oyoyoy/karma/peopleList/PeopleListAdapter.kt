@@ -1,19 +1,17 @@
 package com.oyoyoy.karma.peopleList
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.oyoyoy.domain.data.EntityPerson
+import com.oyoyoy.domain.data.Person
 import com.oyoyoy.karma.R
 
 
-class PeopleListAdapter : ListAdapter<EntityPerson, PeopleListAdapter.PersonViewHolder>(WordsComparator()) {
+class PeopleListAdapter : ListAdapter<Person, PeopleListAdapter.PersonViewHolder>(WordsComparator()) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonViewHolder {
@@ -57,12 +55,12 @@ class PeopleListAdapter : ListAdapter<EntityPerson, PeopleListAdapter.PersonView
         }
     }
 
-    class WordsComparator : DiffUtil.ItemCallback<EntityPerson>() {
-        override fun areItemsTheSame(oldItem: EntityPerson, newItem: EntityPerson): Boolean {
+    class WordsComparator : DiffUtil.ItemCallback<Person>() {
+        override fun areItemsTheSame(oldItem: Person, newItem: Person): Boolean {
             return oldItem === newItem
         }
 
-        override fun areContentsTheSame(oldItem: EntityPerson, newItem: EntityPerson): Boolean {
+        override fun areContentsTheSame(oldItem: Person, newItem: Person): Boolean {
             return oldItem.name == newItem.name
         }
     }
