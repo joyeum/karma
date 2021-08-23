@@ -2,13 +2,10 @@ package com.oyoyoy.karma.peopleList
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.databinding.DataBindingUtil.setContentView
-
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -17,16 +14,20 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.oyoyoy.domain.data.Person
-import com.oyoyoy.karma.EnrollPersonFragment
-import com.oyoyoy.karma.KarmaApplication
-import com.oyoyoy.karma.R
-
+import com.oyoyoy.domain.repository.GetCursePeopleRepository
+import com.oyoyoy.karma.*
 
 
 class PeopleListFragment : Fragment(), EnrollPersonFragment.OnResultListener {
 
+    private val activity = MainActivity()
+    private val application = KarmaApplication()
+
     private val viewModel: PeopleListViewModel by viewModels {
-        PeopleListVieModelFactory((application as KarmaApplication).repository)
+//        appCtx = activity!!.application as Karma
+//        val database by lazy { PersonRoomDatabase.getDatabase(this,applicationScope) }
+//        val repository by lazy { GetCursePeopleRepository(database.personDao()) }
+        PeopleListVieModelFactory(application.repository)
     }
     private lateinit var peopleList : RecyclerView
     private lateinit var adapter: PeopleListAdapter
@@ -37,6 +38,7 @@ class PeopleListFragment : Fragment(), EnrollPersonFragment.OnResultListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         
     }
 
