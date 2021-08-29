@@ -16,18 +16,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.oyoyoy.domain.data.Person
 import com.oyoyoy.domain.repository.GetCursePeopleRepository
 import com.oyoyoy.karma.*
+import com.oyoyoy.karma.KarmaApplication.Companion.instance
 
 
 class PeopleListFragment : Fragment(), EnrollPersonFragment.OnResultListener {
 
     private val activity = MainActivity()
-    private val application = KarmaApplication()
 
     private val viewModel: PeopleListViewModel by viewModels {
-//        appCtx = activity!!.application as Karma
-//        val database by lazy { PersonRoomDatabase.getDatabase(this,applicationScope) }
-//        val repository by lazy { GetCursePeopleRepository(database.personDao()) }
-        PeopleListVieModelFactory(application.repository)
+
+        PeopleListVieModelFactory(instance.repository)
     }
     private lateinit var peopleList : RecyclerView
     private lateinit var adapter: PeopleListAdapter
