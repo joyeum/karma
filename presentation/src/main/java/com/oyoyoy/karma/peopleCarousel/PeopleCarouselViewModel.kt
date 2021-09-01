@@ -21,7 +21,6 @@ class PeopleCarouselViewModel : BaseViewModel() {
     override fun onCreate() {
 
         super.onCreate()
-        Log.d("debugging", "onCreate")
 
 
     }

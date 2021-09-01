@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="@{viewModel.editPersonName}"
+            android:text="@={viewModel.editPersonName}"
             app:layout_constraintBottom_toTopOf="@+id/editPersonContent"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="@dimen/space_l"
@@ -31,7 +31,7 @@
             android:layout_marginBottom="@dimen/space_l"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="@{viewModel.editPersonContent}"
+            android:text="@={viewModel.editPersonContent}"
             app:layout_constraintBottom_toTopOf="@id/buttonEnroll"
             app:layout_constraintStart_toStartOf="@+id/editPersonName"
             />
@@ -44,6 +44,7 @@
             android:ems="8"
             android:paddingBottom="@dimen/space_s"
             android:paddingTop="@dimen/space_s"
+            android:onClick="@{()->viewModel.onButtonClick()}"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

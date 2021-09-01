@@ -14,8 +14,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.oyoyoy.domain.data.Person
-import com.oyoyoy.domain.repository.GetCursePeopleRepository
 import com.oyoyoy.karma.*
+import android.util.Log
 import com.oyoyoy.karma.KarmaApplication.Companion.instance
 
 
@@ -84,8 +84,8 @@ class PeopleListFragment : Fragment(), EnrollPersonFragment.OnResultListener {
 
 
     override fun onResult(inputP: Person) {
-
-            viewModel.insert(inputP)
+        viewModel.insert(inputP)
+        Log.d("debugging", inputP.name) //여기까지 안온다
         /*
         // Fragment가 Visible 중일때만 처리
         if (isVisible) {

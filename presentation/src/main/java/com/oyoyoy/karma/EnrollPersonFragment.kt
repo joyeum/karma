@@ -1,12 +1,7 @@
 package com.oyoyoy.karma
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import androidx.core.os.bundleOf
 
 import com.oyoyoy.karma.base.BaseFragment
 import com.oyoyoy.karma.databinding.FragmentEnrollPersonBinding
@@ -35,6 +30,9 @@ class EnrollPersonFragment: BaseFragment<FragmentEnrollPersonBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = EnrollPersonViewModel()
+        viewDataBinding.viewModel = viewModel
+        viewLifecycleOwner.lifecycle.addObserver(viewModel)
+
         //editPersonName = view.findViewById(R.id.editPersonName)
         //editPersonContent = view.findViewById(R.id.editPersonContent)
         //buttonEnroll = view.findViewById(R.id.buttonEnroll)

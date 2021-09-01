@@ -1,7 +1,6 @@
 package com.oyoyoy.karma
 
-import android.widget.Toast
-import androidx.core.os.bundleOf
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.oyoyoy.domain.data.Person
 import com.oyoyoy.karma.base.BaseViewModel
@@ -20,9 +19,14 @@ class EnrollPersonViewModel:BaseViewModel() {
     }
     override fun onCreate() {
         super.onCreate()
+        Log.d("debugging", "onCreate")
+
     }
 
     fun onButtonClick(){
+        Log.d("debugging", "onButtonClick")
+
+        Log.d("debugging", editPersonContent.value.toString())
         if (editPersonName.value.toString() == ""){
             //저장할 수 없다고 알려주기
         }
@@ -30,7 +34,7 @@ class EnrollPersonViewModel:BaseViewModel() {
         else {
             val person = Person(editPersonName.value.toString(), editPersonContent.value.toString(),1111)
             listener?.onResult(person)
+            enrollClick.value = null
         }
-        enrollClick.value = null
     }
 }
