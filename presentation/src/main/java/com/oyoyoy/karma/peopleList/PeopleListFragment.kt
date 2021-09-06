@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -16,17 +15,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.oyoyoy.domain.data.Person
 import com.oyoyoy.karma.*
 import android.util.Log
-import com.oyoyoy.karma.KarmaApplication.Companion.instance
 
 
 class PeopleListFragment : Fragment(), EnrollPersonFragment.OnResultListener {
 
-    private val activity = MainActivity()
-
-    private val viewModel: PeopleListViewModel by viewModels {
-
-        PeopleListVieModelFactory(instance.repository)
+    interface OnResultListener {
+        fun onResult(value: String)
     }
+
+    private val viewModel = PeopleListViewModel()
+
     private lateinit var peopleList : RecyclerView
     private lateinit var adapter: PeopleListAdapter
     private lateinit var navController : NavController
@@ -36,8 +34,6 @@ class PeopleListFragment : Fragment(), EnrollPersonFragment.OnResultListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        
     }
 
 
@@ -86,17 +82,19 @@ class PeopleListFragment : Fragment(), EnrollPersonFragment.OnResultListener {
     override fun onResult(inputP: Person) {
         viewModel.insert(inputP)
         Log.d("debugging", inputP.name) //여기까지 안온다
-        /*
+
         // Fragment가 Visible 중일때만 처리
         if (isVisible) {
-            /** action to do something */
+            Log.d("debugging", "visible")
+
         }
         else {
+            Log.d("debugging", "invisible")
 
             // Visible이 아닐 경우 Fragment#Arguemtn에 데이터 저장
             //arguments = (arguments ?: Bundle()).also {
                 //it.putString(keyRestore, inputP)
-        }*/
+        }
 
     }
 
@@ -106,6 +104,7 @@ class PeopleListFragment : Fragment(), EnrollPersonFragment.OnResultListener {
 
 
 }
+
 
 
         /*

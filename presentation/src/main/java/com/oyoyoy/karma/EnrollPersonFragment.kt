@@ -12,18 +12,11 @@ class EnrollPersonFragment: BaseFragment<FragmentEnrollPersonBinding>() {
     override val layoutId: Int
         get() = R.layout.fragment_enroll_person
 
-    //private lateinit var editPersonName: EditText
-    //private lateinit var editPersonContent: EditText
-    //private lateinit var buttonEnroll : Button
-    //navController = findNavController()
-
     interface OnResultListener {
         fun onResult(value: Person)
     }
 
-
     lateinit var viewModel: EnrollPersonViewModel
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
