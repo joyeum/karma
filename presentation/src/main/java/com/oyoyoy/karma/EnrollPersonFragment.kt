@@ -16,6 +16,13 @@ class EnrollPersonFragment: BaseFragment<FragmentEnrollPersonBinding>() {
         fun onResult(value: Person)
     }
 
+
+    private var listener: OnResultListener? = null
+
+
+    fun setListener(listener: OnResultListener) {
+        this.listener = listener
+    }
     lateinit var viewModel: EnrollPersonViewModel
 
 

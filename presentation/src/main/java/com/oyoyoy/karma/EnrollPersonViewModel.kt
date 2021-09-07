@@ -10,11 +10,16 @@ class EnrollPersonViewModel:BaseViewModel() {
     var editPersonName : MutableLiveData<String> = MutableLiveData("")
     var editPersonContent : MutableLiveData<String> = MutableLiveData("")
     var enrollClick : MutableLiveData<Unit> = MutableLiveData()
+
+
     private var listener: EnrollPersonFragment.OnResultListener? = null
 
+    // 외부에서 전달할 Setter Listener
     fun setListener(listener: EnrollPersonFragment.OnResultListener) {
         this.listener = listener
     }
+
+
 
     override fun onCreate() {
         super.onCreate()

@@ -15,13 +15,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.oyoyoy.domain.data.Person
 import com.oyoyoy.karma.*
 import android.util.Log
+import androidx.fragment.app.commit
 
 
 class PeopleListFragment : Fragment(), EnrollPersonFragment.OnResultListener {
 
-    interface OnResultListener {
-        fun onResult(value: String)
-    }
 
     private val viewModel = PeopleListViewModel()
 
@@ -32,11 +30,23 @@ class PeopleListFragment : Fragment(), EnrollPersonFragment.OnResultListener {
 
     private val newWordActivityRequestCode = 1
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onResult(inputP: Person) {
+        viewModel.insert(inputP)
+        Log.d("debugging", inputP.name) //여기까지 안온다
+
+        // Fragment가 Visible 중일때만 처리
+
+
     }
 
-
+    private fun showEnrollPersonFragment() {
+        parentFragmentManager.commit {
+            replace(R.id.layout_container, EnrollPersonFragment().apply {
+                setListener(this@PeopleListFragment)
+            })
+            addToBackStack(null)
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -67,36 +77,22 @@ class PeopleListFragment : Fragment(), EnrollPersonFragment.OnResultListener {
         }
 
 
+
+
         viewModel.cursePeople.observe(viewLifecycleOwner, Observer{ people ->
             people.let { adapter.submitList(it) }
             })
 
         buttonMove.setOnClickListener {
-            navController.navigate(R.id.action_PeopleList_to_EnrollPerson)
+            showEnrollPersonFragment()
+            //navController.navigate(R.id.action_PeopleList_to_EnrollPerson)
         }
     }
 
 
 
 
-    override fun onResult(inputP: Person) {
-        viewModel.insert(inputP)
-        Log.d("debugging", inputP.name) //여기까지 안온다
 
-        // Fragment가 Visible 중일때만 처리
-        if (isVisible) {
-            Log.d("debugging", "visible")
-
-        }
-        else {
-            Log.d("debugging", "invisible")
-
-            // Visible이 아닐 경우 Fragment#Arguemtn에 데이터 저장
-            //arguments = (arguments ?: Bundle()).also {
-                //it.putString(keyRestore, inputP)
-        }
-
-    }
 
     companion object {
         private const val keyRestore = "resultRestore"
