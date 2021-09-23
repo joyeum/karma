@@ -2,6 +2,7 @@ package com.oyoyoy.karma.personDetail
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -15,8 +16,11 @@ class PersonDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_person_detail)
-        val personNameView : TextView = findViewById(R.id.n)
+        setContentView(R.layout.activity_person_detail)
+        val personName : TextView = findViewById(R.id.person_detail_name)
+        val personDescription : TextView = findViewById(R.id.person_detail_description)
+        val personImage : ImageView = findViewById(R.id.person_detail_image)
+
         val removePersonButton : Button = findViewById(R.id.remove_button)
 
         var currentPersonId: Long? = null
@@ -28,13 +32,21 @@ class PersonDetailActivity : AppCompatActivity() {
 
         currentPersonId?.let {
             val currentPerson = personDetailViewModel.getPersonForId(it)
-
-
+            personName.text = currentPerson?.name
+            personDescription.text = currentPerson?.description
+            if (currentPerson?.image != null) {
+                personImage.setImageResource(currentPerson.image)
+            } else {
+                personImage.setImageResource(R.drawable.rose)
+            }
+            removePersonButton.setOnClickListener {
+                if (currentPerson != null) {
+                    personDetailViewModel.removePerson(currentPerson)
+                }
+            }
         }
 
-        removePersonButton.setOnClickListener {
-            personDetailViewModel.removePerson(it)
-        }
+
 
 
 
