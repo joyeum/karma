@@ -15,5 +15,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".personDetail.PersonDetailActivity" />
+        <activity android:name=".enrollPerson.EnrollPersonActivity" />
+
     </application>
 </manifest>

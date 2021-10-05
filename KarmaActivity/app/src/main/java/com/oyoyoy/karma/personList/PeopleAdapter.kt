@@ -35,7 +35,7 @@ class PeopleAdapter(private val onClick: (Person) -> Unit)
             }
             else {
                 Log.d("JoyDoyToy", "No Image in this item")
-                //personImageView.setImageResource(R.drawable.rose)
+                personImageView.setImageResource(R.drawable.rose)
             }
         }
     }

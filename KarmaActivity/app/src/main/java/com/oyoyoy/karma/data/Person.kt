@@ -5,7 +5,7 @@ import androidx.annotation.DrawableRes
 data class Person(
     val id: Long,
     val name: String,
+    val description: String,
     @DrawableRes
-    val image: Int?,
-    val description: String
+    val image: Int?
 )

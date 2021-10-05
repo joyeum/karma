@@ -20,7 +20,6 @@ class PersonDetailActivity : AppCompatActivity() {
         val personName : TextView = findViewById(R.id.person_detail_name)
         val personDescription : TextView = findViewById(R.id.person_detail_description)
         val personImage : ImageView = findViewById(R.id.person_detail_image)
-
         val removePersonButton : Button = findViewById(R.id.remove_button)
 
         var currentPersonId: Long? = null
@@ -36,13 +35,15 @@ class PersonDetailActivity : AppCompatActivity() {
             personDescription.text = currentPerson?.description
             if (currentPerson?.image != null) {
                 personImage.setImageResource(currentPerson.image)
-            } else {
+            }
+            else {
                 personImage.setImageResource(R.drawable.rose)
             }
             removePersonButton.setOnClickListener {
                 if (currentPerson != null) {
                     personDetailViewModel.removePerson(currentPerson)
                 }
+                finish()
             }
         }
 
@@ -50,7 +51,7 @@ class PersonDetailActivity : AppCompatActivity() {
 
 
 
-        TODO("Refactoring by using Data Binding joydoytoy")
+//        TODO("Refactoring by using Data Binding joydoytoy")
     }
 
 }

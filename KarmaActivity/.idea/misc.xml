@@ -5,6 +5,8 @@
       <map>
         <entry key="app/src/main/res/drawable/ic_add_black_24dp.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.18385416666666668" />
+        <entry key="app/src/main/res/layout/activity_add_person.xml" value="0.16770833333333332" />
+        <entry key="app/src/main/res/layout/activity_enroll_person.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_people_list.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_person_detail.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_header.xml" value="0.15364583333333334" />

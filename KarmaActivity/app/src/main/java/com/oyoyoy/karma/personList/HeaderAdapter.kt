@@ -11,8 +11,9 @@ class HeaderAdapter : RecyclerView.Adapter<HeaderAdapter.HeaderViewHolder>() {
     private var personCount: Int = 0
     class HeaderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val personCountView : TextView = itemView.findViewById(R.id.person_count_text)
-
-
+        fun bind(personCount : Int ){
+            personCountView.text = personCount.toString()
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int
@@ -23,10 +24,14 @@ class HeaderAdapter : RecyclerView.Adapter<HeaderAdapter.HeaderViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: HeaderAdapter.HeaderViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.bind(personCount)
     }
 
     override fun getItemCount(): Int {
         return 1
+    }
+    fun updatePersonCount(updatedFlowerCount: Int) {
+        personCount = updatedFlowerCount
+        notifyDataSetChanged()
     }
 }

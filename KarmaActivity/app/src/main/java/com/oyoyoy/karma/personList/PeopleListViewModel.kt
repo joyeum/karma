@@ -19,8 +19,8 @@ class PeopleListViewModel(val dataSource: DataSource) : ViewModel() {
         val newPerson = Person(
             Random.nextLong(),
             personName,
-            image,
-            personDescription
+            personDescription,
+            image
         )
         dataSource.addPerson(newPerson)
     }
