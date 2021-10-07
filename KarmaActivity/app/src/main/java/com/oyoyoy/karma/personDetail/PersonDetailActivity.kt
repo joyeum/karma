@@ -20,6 +20,7 @@ class PersonDetailActivity : AppCompatActivity() {
         val personName : TextView = findViewById(R.id.person_detail_name)
         val personDescription : TextView = findViewById(R.id.person_detail_description)
         val personImage : ImageView = findViewById(R.id.person_detail_image)
+        val cursePersonButton : Button = findViewById(R.id.curse_button)
         val removePersonButton : Button = findViewById(R.id.remove_button)
 
         var currentPersonId: Long? = null
@@ -44,6 +45,9 @@ class PersonDetailActivity : AppCompatActivity() {
                     personDetailViewModel.removePerson(currentPerson)
                 }
                 finish()
+            }
+            cursePersonButton.setOnClickListener {
+
             }
         }
 

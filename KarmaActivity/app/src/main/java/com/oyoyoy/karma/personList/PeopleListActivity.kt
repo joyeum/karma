@@ -57,7 +57,7 @@ class PeopleListActivity : AppCompatActivity(){
     }
 
     private fun fabOnClick() {
-        TODO("startActivityForResult is deprecated")
+//        TODO("startActivityForResult is deprecated")
         val intent = Intent(this, EnrollPersonActivity::class.java)
         startActivityForResult(intent, newPersonActivityRequestCode)
 
